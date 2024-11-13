@@ -13,6 +13,17 @@ variable "deploy_custom_roles" {
 
 variable "custom_role_definitions" {
   description = "A list of custom role definitions to be created."
-  type        = list(any)
-  default     = []
+  type = list(object({
+    role_definition_name = string
+    description          = string
+    scope                = string
+    permissions = object({
+      actions          = optional(list(string), [])
+      data_actions     = optional(list(string), [])
+      not_actions      = optional(list(string), [])
+      not_data_actions = optional(list(string), [])
+    })
+    assignable_scopes = optional(list(string), [])
+  }))
+  default = []
 }

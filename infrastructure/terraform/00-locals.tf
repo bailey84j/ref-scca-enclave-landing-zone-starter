@@ -137,7 +137,7 @@ locals {
 
 # The following locals are used to define roles for the subscriptions
 locals {
-  custom_role_definitions = [
+  custom_role_definitions = concat([
     {
       role_definition_name = "Custom - Network Operations (NetOps)"
       description          = "Platform-wide global connectivity management: virtual networks, UDRs, NSGs, NVAs, VPN, Azure ExpressRoute, and others."
@@ -179,8 +179,10 @@ locals {
         not_data_actions = []
       }
       assignable_scopes = ["${local.provider_path.subscriptions}${var.subscription_id_hub}"] ## This setting is optional. (If not defined current subscription ID is used).
-    }
-  ]
+    },
+    ],
+    var.custom_role_definitions
+  )
 }
 
 # The following locals are used to define base Azure
