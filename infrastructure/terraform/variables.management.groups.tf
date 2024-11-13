@@ -18,14 +18,25 @@ variable "enable_management_groups" {
 
 variable "root_management_group_id" {
   type        = string
-  description = "If specified, will set a custom Name (ID) value for the \"root\" Management Group, and append this to the ID for all core Management Groups." 
-  default = null
+  description = "If specified, will set a custom Name (ID) value for the \"root\" Management Group, and append this to the ID for all core Management Groups."
+  default     = null
 }
 
 variable "root_management_group_display_name" {
   type        = string
   description = "If specified, will set a custom Display Name value for the \"root\" Management Group."
-  default = null  
+  default     = null
+}
+
+variable "custom_management_groups" {
+  type = map(object({
+    display_name               = string
+    management_group_name      = string
+    parent_management_group_id = string
+    subscription_ids           = list(string)
+  }))
+  default = {}
+
 }
 
 ###########################

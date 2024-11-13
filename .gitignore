@@ -88,3 +88,6 @@ infrastructure/terraform/03-modules.management.budgets.tf
 *.log
 *.tfplan
 *.bak
+
+
+infrastructure.2/*
